@@ -31,7 +31,7 @@ class AlienInvasion:
         self.bg_color = self.settings.bg_color
 
         #Start alien invasion in an active state
-        self.game_active = True
+        self.game_active = False
 
     def _check_aliens_bottom(self):
         """Check if any of aliens have reached the bottom of the screen"""
