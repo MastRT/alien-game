@@ -138,7 +138,8 @@ class AlienInvasion:
         #Remove any bullets and aliens that  have colided
         collisions = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True)
         if collisions:
-            self.stats.score += self.settings.alien_points * len(aliens)
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
             self.sb.check_high_score()
         if not self.aliens:
@@ -164,15 +165,12 @@ class AlienInvasion:
         """Drop the entire fleet and change the fleet's direction"""
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
-            self.settings.fleet_direction *= -1
+        self.settings.fleet_direction *= -1
 
     def _update_aliens(self):
         """Update the positons of all aliens in the fleet"""
+        self._check_fleet_edges()
         self.aliens.update()
-        #look for alien ship collisons
-        if pygame.sprite.spritecollideany(self.ship,self.aliens):
-            print("Ship hit!!!")
-
         #look for aliens hitting the bottom of the screen
         self._check_aliens_bottom()
 
