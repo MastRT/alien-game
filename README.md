@@ -9,6 +9,7 @@ RULES IN GAME:
 HOW TP PLAY:
 - Use ←/→ Arrow keys to control the ship
 - Use SpaceBar to shoot
+- Use 'q' key to exit
 
    
 You can run the game by running main.py
